@@ -6,15 +6,12 @@ class Dao {
   }
 
   getById(id) {
-    const sql = `SELECT * FROM ${this.tableName}`;
-    return dbConnection.execute(
-      `SELECT * FROM ${this.tableName} WHERE id = ?`,
-      [id]
-    );
+    const sql = `SELECT * FROM ${this.tableName} WHERE id = ?`;
+    return dbConnection.execute(sql, [id]);
   }
 
   /*
-    fields represent the columns
+    fields represent the columns in db
     values represent the values we're putting into those fields
     question marks are created in order to create prepared statements and avoid sql injections
   */

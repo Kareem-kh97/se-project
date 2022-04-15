@@ -42,6 +42,7 @@
 
             e.preventDefault();
             usernameErrorField.textContent = "";
+            passwordErrorField.textContent = "";
 
             const data = {
                 username: form.username.value,
@@ -60,10 +61,17 @@
         
             const fetchedData = await response.json();
 
+            //Check if fetchedData contains any errors and displays them
             if(fetchedData.error){
-                if(fetchedData.error.includes('username is too short')) usernameErrorField.textContent = fetchedData.error;
+                if('usernameError' in fetchedData.error){
+                    usernameErrorField.textContent = fetchedData.error.usernameError;
+                }
+                if('passwordError' in fetchedData.error){
+                    passwordErrorField.textContent = fetchedData.error.passwordError;
+                }
             }
 
+            //Do something with the newly added users id (add later)
             if(fetchedData.userId){
                 console.log(fetchedData.userId);
             }

@@ -1,7 +1,10 @@
 const User = require("../models/User");
 
 const registerFormValidation = (username, email, password) => {
-  if (username.length < 3) return "username is too short";
+  const errors = {};
+  if (username.length < 3) errors.usernameError = "Username is too short";
+  if (password.length < 5) errors.passwordError = "Password is too short";
+  return errors;
 };
 
 const register_get = (req, res) => {
@@ -15,16 +18,16 @@ const register_post = async (req, res) => {
     const error = registerFormValidation(username, email, password);
 
     if (error) {
-      res.json({ error });
-    } else {
-      const data = await User.addNewUser(
-        ["username", "email", "password"],
-        [username, email, password]
-      );
-      res.status(201).json({ userId: data[0].insertId });
+      return res.json({ error });
     }
+
+    const data = await User.addNewUser(
+      ["username", "email", "password"],
+      [username, email, password]
+    );
+    res.json({ userId: data[0].insertId });
   } catch (error) {
-    next(error);
+    console.log(error);
   }
 };
 

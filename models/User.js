@@ -5,7 +5,7 @@ class User extends Dao {
     super("users");
   }
 
-  getUserById = async (id) => {
+  getUserById = (id) => {
     const [data, _] = super.getById(id);
   };
 
