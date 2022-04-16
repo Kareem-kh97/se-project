@@ -44,6 +44,7 @@
 
             usernameErrorField.textContent = "";
             passwordErrorField.textContent = "";
+            emailErrorField.textContent = "";
 
             const data = {
                 username: form.username.value,
@@ -64,11 +65,18 @@
 
             //Check if fetchedData contains any errors and displays them
             if(fetchedData.error){
-                if('usernameError' in fetchedData.error){
-                    usernameErrorField.textContent = fetchedData.error.usernameError;
+                const {error} = fetchedData;
+                if('usernameError' in error){
+                    usernameErrorField.textContent = error.usernameError;
                 }
-                if('passwordError' in fetchedData.error){
-                    passwordErrorField.textContent = fetchedData.error.passwordError;
+                if('passwordError' in error){
+                    passwordErrorField.textContent = error.passwordError;
+                }
+                if('emailExistsError' in error){
+                    emailErrorField.textContent = error.emailExistsError;
+                }
+                if('usernameExistsError' in error){
+                    usernameErrorField.textContent = error.usernameExistsError;
                 }
             }
 

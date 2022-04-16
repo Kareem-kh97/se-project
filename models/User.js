@@ -6,12 +6,19 @@ class User extends Dao {
   }
 
   getUserById = (id) => {
-    const [data, _] = super.getById(id);
+    return super.getById(id);
   };
 
   addNewUser = (fields, values) => {
-    const data = super.insertRow(fields, values);
-    return data;
+    return super.insertRow(fields, values);
+  };
+
+  getUserByEmail = (email) => {
+    return super.getByValue("email", email);
+  };
+
+  getUserByUsername = (username) => {
+    return super.getByValue("username", username);
   };
 }
 

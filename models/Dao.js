@@ -21,6 +21,11 @@ class Dao {
     const sql = `INSERT INTO ${this.tableName} (${joinedFields}) VALUES (${questionMarks})`;
     return dbConnection.execute(sql, values);
   }
+
+  getByValue(columnName, value) {
+    const sql = `SELECT * FROM ${this.tableName} WHERE ${columnName} = ?`;
+    return dbConnection.execute(sql, [value]);
+  }
 }
 
 module.exports = Dao;
