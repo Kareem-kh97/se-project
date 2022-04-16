@@ -64,7 +64,11 @@
                     passwordErrorField.textContent = error;
             }
 
-            
+            if(fetchedData.message){
+                window.location.href = '/index';
+            }
+
+
     
         });
 

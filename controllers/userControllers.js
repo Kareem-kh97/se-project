@@ -1,5 +1,7 @@
 const User = require("../models/User");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+require("dotenv").config();
 
 const registerFormValidation = (username, email, password) => {
   let errors = {};
@@ -32,7 +34,13 @@ const checkUserLoginCredentials = async (email, password) => {
   const comparePasswords = await bcrypt.compare(password, dbUser[0].password);
   if (!comparePasswords) return { error: "Invalid password" };
 
-  return true;
+  return dbUser[0];
+};
+
+const createJwtToken = (id) => {
+  return jwt.sign({ id }, process.env.SECRET, {
+    expiresIn: "1d",
+  });
 };
 
 //Routes
@@ -70,14 +78,26 @@ const login_get = (req, res) => {
   res.render("login");
 };
 
-const login_post = async (req, res) => {
+const login_post = async (req, res, next) => {
   const { email, password } = req.body;
 
-  const verifyLogin = await checkUserLoginCredentials(email, password);
+  try {
+    const verifyLogin = await checkUserLoginCredentials(email, password);
 
-  if (verifyLogin.error) return res.json({ error: verifyLogin.error });
+    if (verifyLogin.error) return res.json({ error: verifyLogin.error });
 
-  res.cookie("loggedIn", true);
+    //Just renaming the variable name so the below code makes sense
+    const dbUser = verifyLogin;
+
+    const jwtToken = createJwtToken(dbUser.id);
+    res.cookie("jwt", jwtToken, {
+      httpOnly: true,
+      maxAge: 24 * 60 * 60 * 1000,
+    });
+    res.json({ message: "Success" });
+  } catch (error) {
+    next(error);
+  }
 };
 
 module.exports = {

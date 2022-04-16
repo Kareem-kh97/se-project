@@ -1,5 +1,8 @@
 const router = require("express").Router();
 const userControllers = require("../controllers/userControllers");
+const authenticateUser = require("../middleware/authMiddleware");
+
+router.get("/index", authenticateUser, (req, res) => res.render("index"));
 
 //Registration routes
 router.get("/register", userControllers.register_get);
