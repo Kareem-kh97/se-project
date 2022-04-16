@@ -1,5 +1,6 @@
 const express = require("express");
 const app = express();
+const cookieParser = require("cookie-parser");
 
 //Import routes
 const userRoutes = require("./routes/userRoutes");
@@ -18,6 +19,7 @@ app.use(express.static(__dirname));
 //Middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(cookieParser());
 
 //Let the landing page be register page for now
 app.get("/", (req, res) => {
@@ -33,6 +35,6 @@ app.use((req, res) => {
 });
 
 //Handles errors edit later
-app.use((err, req, res, next) => {
-  console.log(err);
+app.use((error, req, res, next) => {
+  console.log(error);
 });

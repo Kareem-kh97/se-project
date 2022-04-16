@@ -4,11 +4,72 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/public/css/login.css">
     <title>Login</title>
 </head>
 <body>
 
+    <div class="container">
+        <form id="form">
+            <h2>Login</h2>
+            <div>
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email" required>
+                <div class="error" id="email-error"></div>
+            </div>
+            <div>
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password" required>
+                <div class="error" id="password-error"></div>
+            </div>
+            <input id="login-button" type="submit" value="Login">
+        </form>
+    </div>
+
+    <script>
+
+        const form = document.getElementById("form");
+        const emailErrorField = document.getElementById("email-error");
+        const passwordErrorField = document.getElementById("password-error");
+
+        form.addEventListener("submit", async (e) => {
+
+            e.preventDefault();
+
+            passwordErrorField.textContent = "";
+            emailErrorField.textContent = "";
+
+            const data = {
+                email: form.email.value,
+                password: form.password.value,
+            };
+
+            const response = await fetch("/login", {
+                method: "POST",
+                headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+                },
+                body: JSON.stringify(data),
+            });
+
+            const fetchedData = await response.json();
+
+            //Check if fetchedData contains any errors and displays them
+            if (fetchedData.error) {
+                const {error} = fetchedData;
+                if(error.includes("The given email is not registered"))
+                    emailErrorField.textContent = error;
+                if(error.includes("Invalid password"))
+                    passwordErrorField.textContent = error;
+            }
+
+            
     
+        });
+
+    </script>
+
     
 </body>
 </html>
