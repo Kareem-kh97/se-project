@@ -1,9 +1,9 @@
 const router = require("express").Router();
 const userControllers = require("../controllers/userControllers");
-const {
-  authenticateUser,
-  checkIfUserIsLoggedIn,
-} = require("../middleware/authMiddleware");
+
+//Middleware
+const authenticateUser = require("../middleware/authMiddleware");
+const checkIfUserIsLoggedIn = require("../middleware/checkIfUserIsLoggedIn");
 
 router.get("/index", authenticateUser, (req, res) => res.render("index"));
 

@@ -1,8 +1,7 @@
-const jwt = require("jsonwebtoken");
-require("dotenv").config();
-
-const authenticateUser = (req, res, next) => {
+const checkIfUserIsLoggedIn = (req, res, next) => {
   const jwtToken = req.cookies.jwt;
+
+  console.log(jwtToken);
 
   if (jwtToken) {
     jwt.verify(jwtToken, process.env.SECRET, (err, decodedToken) => {
@@ -10,13 +9,12 @@ const authenticateUser = (req, res, next) => {
         console.log(err.message);
         res.redirect("/login");
       } else {
-        console.log(decodedToken);
-        next();
+        res.redirect("/index");
       }
     });
   } else {
-    res.redirect("/login");
+    next();
   }
 };
 
-module.exports = authenticateUser;
+module.exports = checkIfUserIsLoggedIn;
