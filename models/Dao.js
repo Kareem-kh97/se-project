@@ -10,6 +10,11 @@ class Dao {
     return dbConnection.execute(sql, [id]);
   }
 
+  getRowsWithPagination(limit, offset = 0) {
+    const sql = `SELECT * FROM ${this.tableName} LIMIT ${limit} OFFSET ${offset}`;
+    return dbConnection.execute(sql);
+  }
+
   /*
     fields represent the columns in db
     values represent the values we're putting into those fields

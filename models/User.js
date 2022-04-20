@@ -2,6 +2,7 @@ const Dao = require("./Dao");
 
 class User extends Dao {
   constructor() {
+    //Name of the table we're using, so for movies it would be super("movies")
     super("users");
   }
 
