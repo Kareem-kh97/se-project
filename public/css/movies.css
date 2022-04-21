@@ -6,6 +6,18 @@
   row-gap: 20px;
 }
 
+.card-custom {
+  cursor: pointer;
+  transform: scale(1);
+  transition: 0.3s;
+}
+
+.card-custom:hover {
+  transform: scale(1.05);
+  transition: 0.3s;
+  animation: ease-in-out;
+}
+
 @media only screen and (max-width: 768px) {
   .movie-container {
     display: grid;
