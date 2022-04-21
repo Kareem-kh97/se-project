@@ -26,6 +26,10 @@ app.get("/", (req, res) => {
   res.render("movies");
 });
 
+app.get("/moviedetails", (req, res) => {
+  res.render("moviedetails");
+});
+
 //Include routes
 app.use(userRoutes);
 

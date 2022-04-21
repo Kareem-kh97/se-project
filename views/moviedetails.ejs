@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="/public/css/movies.css" />
+    <!-- JavaScript Bundle with Popper -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+      crossorigin="anonymous"
+      defer
+    ></script>
+    <title>Details about</title>
+  </head>
+  <body>
+    <%-include('./partials/navbar.ejs') %>
+
+    <!--Main Content-->
+    <h2 class="text-center mt-4">Toy Story 4</h2>
+    <div class="container mt-4 d-flex justify-content-center">
+      <img
+        src="../public//img/toy-story-4-movie-poster.jpeg"
+        alt="Toy Story 4 poster"
+        class="img-fluid mx-auto w-25 h-25"
+      />
+    </div>
+
+    <div class="container mt-5 d-flex justify-content-center flex-column">
+      <div class="bg-light shadow p-2">
+        <h4 class="border-bottom" style="width: fit-content">Storyline</h4>
+        <p>Description of the movie goes here!</p>
+      </div>
+      <div class="bg-light shadow p-2 mt-4">
+        <h4 class="border-bottom" style="width: fit-content">Review</h4>
+        <p>Review of the movie goes here!</p>
+      </div>
+      <div class="p-2 mt-4">
+        <p>Actors: Christian Bale, Keanu Reeves...</p>
+      </div>
+      <button class="btn btn-primary w-50 mx-auto mb-5">
+        Add To Bookmarks
+      </button>
+    </div>
+  </body>
+</html>
