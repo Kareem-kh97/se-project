@@ -23,7 +23,7 @@ app.use(cookieParser());
 
 //Let the landing page be register page for now
 app.get("/", (req, res) => {
-  res.render("register");
+  res.render("movies");
 });
 
 //Include routes
