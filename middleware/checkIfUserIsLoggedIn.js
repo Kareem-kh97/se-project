@@ -1,3 +1,5 @@
+const jwt = require("jsonwebtoken");
+
 const checkIfUserIsLoggedIn = (req, res, next) => {
   const jwtToken = req.cookies.jwt;
 
@@ -9,7 +11,7 @@ const checkIfUserIsLoggedIn = (req, res, next) => {
         console.log(err.message);
         res.redirect("/login");
       } else {
-        res.redirect("/index");
+        res.redirect("/");
       }
     });
   } else {

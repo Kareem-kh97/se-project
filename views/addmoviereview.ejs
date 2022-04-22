@@ -10,7 +10,6 @@
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="/public/css/moviedetails.css" />
     <!-- JavaScript Bundle with Popper -->
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
@@ -23,12 +22,27 @@
   <body>
     <%-include('./partials/navbar.ejs') %>
 
-    <div class="container">
-      <form id="form" class="d-flex">
-        <div>
-          <label for="moviename">Movie Name</label>
-          <input type="text" name="moviename" placeholder="Movie Name" />
+    <div class="container mt-5">
+      <form>
+        <div class="form-group">
+          <label for="title">Movie Name</label>
+          <input
+            type="text"
+            class="form-control"
+            name="title"
+            placeholder="Enter email"
+          />
         </div>
+        <div class="form-group">
+          <label for="description">What's the movie about?</label><br />
+          <textarea name="description" cols="50" rows="5"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="review">What do you think about the movie?</label><br />
+          <textarea name="review" cols="50" rows="5"></textarea>
+        </div>
+        <div class="form-group"></div>
+        <button type="submit" class="btn btn-primary">Submit</button>
       </form>
     </div>
   </body>
