@@ -28,7 +28,12 @@
     <div class="container mt-5 d-flex justify-content-around">
       <div class="movie-container">
         <% movies.forEach(movie => { %>
-        <div class="card card-custom" style="width: 18rem">
+        <div
+          id="card"
+          data-id="<%= movie.id %> "
+          class="card card-custom"
+          style="width: 18rem"
+        >
           <img
             src="/public/img/toy-story-4-movie-poster.jpeg"
             class="card-img-top img-fluid"
@@ -47,7 +52,8 @@
       const getCards = Array.from(document.getElementsByClassName("card"));
       getCards.forEach((element) => {
         element.addEventListener("click", () => {
-          window.location.href = "/moviedetails";
+          const id = element.getAttribute("data-id");
+          window.location.href = `/movie/${id}`;
         });
       });
     </script>

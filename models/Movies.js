@@ -8,6 +8,10 @@ class Movies extends Dao {
   getMovies = () => {
     return super.getRowsWithPagination(10);
   };
+
+  getMovieById = (id) => {
+    return super.getById(id);
+  };
 }
 
 module.exports = new Movies();
