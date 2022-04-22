@@ -2,6 +2,8 @@ const express = require("express");
 const app = express();
 const cookieParser = require("cookie-parser");
 
+const PORT = process.env.PORT || 3000;
+
 //Import routes
 const userRoutes = require("./routes/userRoutes");
 
@@ -9,7 +11,7 @@ const userRoutes = require("./routes/userRoutes");
 app.set("view engine", "ejs");
 
 //Start server
-app.listen(process.env.PORT || 3000, () => {
+app.listen(PORT || 3000, () => {
   console.log("Listening on port 3000");
 });
 
