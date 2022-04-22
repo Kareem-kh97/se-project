@@ -6,6 +6,7 @@ const PORT = process.env.PORT || 3000;
 
 //Import routes
 const userRoutes = require("./routes/userRoutes");
+const movieRoutes = require("./routes/movieRoutes");
 
 //Setup ejs as our templating language
 app.set("view engine", "ejs");
@@ -23,17 +24,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cookieParser());
 
-//Let the landing page be register page for now
-app.get("/", (req, res) => {
-  res.render("movies");
-});
-
-app.get("/moviedetails", (req, res) => {
-  res.render("moviedetails");
-});
-
 //Include routes
 app.use(userRoutes);
+app.use(movieRoutes);
 
 //Handles invalid routes
 app.use((req, res) => {

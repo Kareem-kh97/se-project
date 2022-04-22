@@ -5,8 +5,6 @@ const userControllers = require("../controllers/userControllers");
 const authenticateUser = require("../middleware/authMiddleware");
 const checkIfUserIsLoggedIn = require("../middleware/checkIfUserIsLoggedIn");
 
-router.get("/index", authenticateUser, (req, res) => res.render("index"));
-
 //Registration routes
 router.get("/register", checkIfUserIsLoggedIn, userControllers.register_get);
 

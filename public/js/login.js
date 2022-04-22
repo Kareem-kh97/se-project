@@ -34,6 +34,6 @@ form.addEventListener("submit", async (e) => {
   }
 
   if (fetchedData.message) {
-    window.location.href = "/index";
+    window.location.href = "/";
   }
 });
