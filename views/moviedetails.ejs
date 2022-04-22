@@ -24,7 +24,7 @@
     <%-include('./partials/navbar.ejs') %>
 
     <!--Main Content-->
-    <h2 class="text-center mt-4"><%= movie.title %></h2>
+    <h2 class="text-center mt-4"><%= movieAndActors[0].title %></h2>
     <div class="container mt-4 d-flex justify-content-center">
       <img
         src="../public//img/toy-story-4-movie-poster.jpeg"
@@ -36,16 +36,23 @@
     <div class="container mt-5 d-flex justify-content-center flex-column">
       <div class="bg-light shadow p-2">
         <h4 class="border-bottom" style="width: fit-content">Storyline</h4>
-        <p><%= movie.description %></p>
+        <p><%= movieAndActors[0].description %></p>
       </div>
       <div class="bg-light shadow p-2 mt-4">
         <h4 class="border-bottom" style="width: fit-content">Review</h4>
-        <p><%= movie.review %></p>
+        <p><%= movieAndActors[0].review %></p>
       </div>
       <div class="p-2 mt-4">
-        <p>Actors: Christian Bale, Keanu Reeves...</p>
+        <h4 class="border-bottom" style="width: fit-content">Actors</h4>
+        <% movieAndActors.forEach(item => { %>
+        <a href="#"
+          ><span class="mr-2" data-actor_id="<%= item.actor_id %> "
+            ><%= item.actorname %>
+          </span></a
+        >
+        <% }) %>
       </div>
-      <button class="btn btn-primary w-50 mx-auto mb-5">
+      <button class="btn btn-primary w-50 mx-auto mb-5 mt-3">
         Add To Bookmarks
       </button>
     </div>

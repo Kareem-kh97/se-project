@@ -1,4 +1,5 @@
 const Movies = require("../models/Movies");
+const ActorsMovies = require("../models/ActorsMovies");
 
 const movie_get = async (req, res) => {
   const [movies] = await Movies.getMovies();
@@ -7,8 +8,8 @@ const movie_get = async (req, res) => {
 
 const movie_by_id_get = async (req, res) => {
   const id = req.params.id;
-  const [movie] = await Movies.getById(id);
-  res.render("moviedetails", { movie: movie[0] });
+  const [movieAndActors] = await ActorsMovies.getMoviesAndActors(id);
+  res.render("moviedetails", { movieAndActors });
 };
 
 module.exports = {
