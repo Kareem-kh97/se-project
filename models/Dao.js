@@ -11,12 +11,12 @@ class Dao {
   }
 
   getRowsWithPagination(limit, offset = 0) {
-    const sql = `SELECT * FROM ${this.tableName} LIMIT ${limit} OFFSET ${offset}`;
+    const sql = `SELECT * FROM ${this.tableName} ORDER BY id DESC LIMIT ${limit} OFFSET ${offset}`;
     return dbConnection.execute(sql);
   }
 
   /*
-    fields represent the columns in db
+    fields represent the columns of the newly inserted row
     values represent the values we're putting into those fields
     question marks are created in order to create prepared statements and avoid sql injections
   */

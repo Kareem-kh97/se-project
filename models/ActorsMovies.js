@@ -1,7 +1,11 @@
 const dbConnection = require("../config/db");
+const Dao = require("./Dao");
 
-//Combines multiple views, so abstraction is not likely,
-class ActorsMovies {
+class ActorsMovies extends Dao {
+  constructor() {
+    super("actors_movies");
+  }
+
   getMoviesAndActors = (id) => {
     const sql = `
         SELECT movie_id, actor_id, fullname AS actorname, title, description, review FROM actors_movies am 
@@ -10,6 +14,10 @@ class ActorsMovies {
         WHERE am.movie_id = ?`;
 
     return dbConnection.execute(sql, [id]);
+  };
+
+  insertMoviesAndActors = (movie_id, actor_id) => {
+    return super.insertRow(["actor_id", "movie_id"], [actor_id, movie_id]);
   };
 }
 

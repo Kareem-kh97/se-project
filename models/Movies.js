@@ -12,6 +12,10 @@ class Movies extends Dao {
   getMovieById = (id) => {
     return super.getById(id);
   };
+
+  addMovie = (fields, values) => {
+    return super.insertRow(fields, values);
+  };
 }
 
 module.exports = new Movies();
