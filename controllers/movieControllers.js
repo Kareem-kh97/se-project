@@ -12,7 +12,6 @@ const decodeToken = async (token) => {
 
 const movie_get = async (req, res) => {
   const [movies] = await Movies.getMovies();
-  console.log(movies);
   res.render("movies", { movies });
 };
 

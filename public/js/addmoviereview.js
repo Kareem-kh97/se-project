@@ -51,5 +51,8 @@ submitButton.addEventListener("click", async (e) => {
   });
 
   let successStatus = await actorsMoviesResponse.json();
-  console.log("Response json: ", successStatus);
+
+  if (successStatus) {
+    window.location.href = "/";
+  }
 });
