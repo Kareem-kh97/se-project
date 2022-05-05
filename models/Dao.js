@@ -5,13 +5,19 @@ class Dao {
     this.tableName = tableName;
   }
 
-  getById(id) {
-    const sql = `SELECT * FROM ${this.tableName} WHERE id = ?`;
+  getById(id, id_field_name = "id") {
+    const sql = `SELECT * FROM ${this.tableName} WHERE ${id_field_name} = ?`;
     return dbConnection.execute(sql, [id]);
   }
 
   getRowsWithPagination(limit, offset = 0) {
     const sql = `SELECT * FROM ${this.tableName} ORDER BY id DESC LIMIT ${limit} OFFSET ${offset}`;
+    return dbConnection.execute(sql);
+  }
+
+  getRowsWithPattern(columnName, searchPattern) {
+    const sql = `SELECT id, title, description FROM ${this.tableName}
+                 WHERE ${columnName} LIKE '%${searchPattern}%' LIMIT 10`;
     return dbConnection.execute(sql);
   }
 

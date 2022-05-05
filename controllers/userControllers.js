@@ -100,9 +100,15 @@ const login_post = async (req, res, next) => {
   }
 };
 
+const bookmark_post = async (req, res) => {
+  //Continue here
+  const movie_id = req.params.id;
+};
+
 module.exports = {
   register_get,
   register_post,
   login_get,
   login_post,
+  bookmark_post,
 };

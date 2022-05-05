@@ -16,6 +16,10 @@ class Movies extends Dao {
   addMovie = (fields, values) => {
     return super.insertRow(fields, values);
   };
+
+  getMovieByTitleWithPattern(movieTitle) {
+    return super.getRowsWithPattern("title", movieTitle);
+  }
 }
 
 module.exports = new Movies();

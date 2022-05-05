@@ -15,4 +15,6 @@ router.get("/login", checkIfUserIsLoggedIn, userControllers.login_get);
 
 router.post("/login", userControllers.login_post);
 
+router.post("/bookmark/:id", authenticateUser, userControllers.bookmark_post);
+
 module.exports = router;

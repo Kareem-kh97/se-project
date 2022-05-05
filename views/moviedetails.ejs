@@ -24,7 +24,13 @@
     <%-include('./partials/navbar.ejs') %>
 
     <!--Main Content-->
-    <h2 class="text-center mt-4"><%= movieAndActors[0].title %></h2>
+    <h2
+      id="movie-title"
+      data-movie-id="<%= movieAndActors[0].movie_id %> "
+      class="text-center mt-4"
+    >
+      <%= movieAndActors[0].title %>
+    </h2>
     <div class="container mt-4 d-flex justify-content-center">
       <img
         src="../public//img/toy-story-4-movie-poster.jpeg"
@@ -52,11 +58,50 @@
         >
         <% }) %>
       </div>
-      <button class="btn btn-primary w-50 mx-auto mb-5 mt-3">
-        Add To Bookmarks
+
+      <% if(userBookmarks) { %>
+      <button
+        id="bookmark-button"
+        class="btn btn-primary w-50 mx-auto mb-5 mt-3"
+      >
+        Bookmarked
       </button>
+      <%} else {%>
+      <button
+        id="bookmark-button"
+        class="btn btn-success w-50 mx-auto mb-5 mt-3"
+        disabled
+      >
+        Bookmarked
+      </button>
+      <% } %>
     </div>
 
-    <script></script>
+    <script>
+      const bookmarkButton = document.getElementById("bookmark-button");
+      const movie_id = document
+        .getElementById("movie-title")
+        .getAttribute("data-movie-id");
+
+      bookmarkButton.addEventListener("click", async () => {
+        bookmarkButton.setAttribute("disabled", true);
+
+        const bookmarkData = {
+          movie_id: Number(movie_id),
+        };
+
+        let movieResponse = await fetch("/bookmarkmovie", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(bookmarkData),
+        });
+
+        movieResponse = await movieResponse.json();
+
+        console.log(movieResponse);
+      });
+    </script>
   </body>
 </html>

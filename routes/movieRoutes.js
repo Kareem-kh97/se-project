@@ -11,10 +11,18 @@ router.get("/addreview", authenticateUser, movieControllers.add_review_get);
 router.post("/addmovie", authenticateUser, movieControllers.add_movie_post);
 
 router.post(
+  "/bookmarkmovie",
+  authenticateUser,
+  movieControllers.bookmarkMoviePost
+);
+
+router.post(
   "/addmoviesactors",
   authenticateUser,
   movieControllers.add_movies_actors_post
 );
+
+router.get("/moviedb", authenticateUser, movieControllers.movieDbGet);
 
 router.get("/movie/:id", authenticateUser, movieControllers.movie_by_id_get);
 

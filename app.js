@@ -36,4 +36,5 @@ app.use((req, res) => {
 //Handles errors edit later
 app.use((error, req, res, next) => {
   console.log(error);
+  res.render("404");
 });
