@@ -10,6 +10,12 @@ router.get("/addreview", authenticateUser, movieControllers.add_review_get);
 
 router.post("/addmovie", authenticateUser, movieControllers.add_movie_post);
 
+router.get(
+  "/bookmarks",
+  authenticateUser,
+  movieControllers.bookmarkedMoviesGet
+);
+
 router.post(
   "/bookmarkmovie",
   authenticateUser,
@@ -25,5 +31,7 @@ router.post(
 router.get("/moviedb", authenticateUser, movieControllers.movieDbGet);
 
 router.get("/movie/:id", authenticateUser, movieControllers.movie_by_id_get);
+
+router.delete("/movie/:id", movieControllers.movieByIdDelete);
 
 module.exports = router;

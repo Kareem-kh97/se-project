@@ -4,7 +4,7 @@ const User = require("../models/User");
 const Movies = require("../models/Movies");
 const Actors = require("../models/Actors");
 const ActorsMovies = require("../models/ActorsMovies");
-const UserBookmarkedMovies = require("../models/UsersBookmarkedMovies");
+const UsersBookmarkedMovies = require("../models/UsersBookmarkedMovies");
 
 const decodeToken = async (token) => {
   const decoded = await jwt.verify(token, process.env.SECRET);
@@ -24,15 +24,16 @@ const movie_by_id_get = async (req, res, next) => {
   const decodedToken = await decodeToken(req.cookies.jwt);
   const [user] = await User.getById(decodedToken.id);
   const user_id = user[0].id;
+  const isUserEditor = user[0].isEditor;
 
-  let [userBookmarks] = await UserBookmarkedMovies.checkIfMovieIsBookmarked(
+  let [userBookmarks] = await UsersBookmarkedMovies.checkIfMovieIsBookmarked(
     user_id,
     movie_id
   );
 
   userBookmarks = userBookmarks.length == 0 ? true : false;
 
-  res.render("moviedetails", { movieAndActors, userBookmarks });
+  res.render("moviedetails", { movieAndActors, userBookmarks, isUserEditor });
 };
 
 const add_review_get = async (req, res) => {
@@ -83,8 +84,20 @@ const bookmarkMoviePost = async (req, res) => {
 
   const { movie_id } = req.body;
 
-  await UserBookmarkedMovies.addMovieToBookmakrs(user_id, movie_id);
+  await UsersBookmarkedMovies.addMovieToBookmakrs(user_id, movie_id);
   //return res.json({ message: "success" });
+};
+
+const bookmarkedMoviesGet = async (req, res) => {
+  const decodedToken = await decodeToken(req.cookies.jwt);
+  const [user] = await User.getById(decodedToken.id);
+  const user_id = user[0].id;
+
+  const [movies] = await UsersBookmarkedMovies.getBookmarkedMoviesByUserId(
+    user_id
+  );
+
+  res.render("bookmarks", { movies });
 };
 
 const movieDbGet = async (req, res) => {
@@ -98,6 +111,19 @@ const movieDbGet = async (req, res) => {
   }
 };
 
+const movieByIdDelete = async (req, res) => {
+  const movieId = req.params.id;
+
+  console.log("Triggered");
+
+  //Remove prior constraints from child tables first
+  await ActorsMovies.deleteMoviesAndActors("movie_id", movieId);
+  await UsersBookmarkedMovies.deleteMovieFromBookmarks(movieId);
+  const [result] = await Movies.deleteMovieById(movieId);
+
+  res.json({ message: "Successfuly deleted the movie" });
+};
+
 module.exports = {
   movie_get,
   movie_by_id_get,
@@ -105,5 +131,7 @@ module.exports = {
   add_movie_post,
   add_movies_actors_post,
   bookmarkMoviePost,
+  bookmarkedMoviesGet,
   movieDbGet,
+  movieByIdDelete,
 };

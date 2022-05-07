@@ -16,8 +16,12 @@ class ActorsMovies extends Dao {
     return dbConnection.execute(sql, [id]);
   };
 
-  insertMoviesAndActors = (movie_id, actor_id) => {
-    return super.insertRow(["actor_id", "movie_id"], [actor_id, movie_id]);
+  insertMoviesAndActors = (movieId, actorId) => {
+    return super.insertRow(["actor_id", "movie_id"], [actorId, movieId]);
+  };
+
+  deleteMoviesAndActors = (columnName, id) => {
+    return super.deleteRow(columnName, id);
   };
 }
 

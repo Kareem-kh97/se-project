@@ -33,6 +33,11 @@ class Dao {
     return dbConnection.execute(sql, values);
   }
 
+  deleteRow(columnName, value) {
+    const sql = `DELETE FROM ${this.tableName} WHERE ${columnName} = ?`;
+    return dbConnection.execute(sql, [value]);
+  }
+
   getByValue(columnName, value) {
     const sql = `SELECT * FROM ${this.tableName} WHERE ${columnName} = ?`;
     return dbConnection.execute(sql, [value]);

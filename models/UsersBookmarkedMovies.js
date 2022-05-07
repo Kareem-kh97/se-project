@@ -11,15 +11,23 @@ class UserBookmarkedMovies extends Dao {
     return super.insertRow(["user_id", "movie_id"], [user_id, movie_id]);
   }
 
-  getUserBookmarksById(user_id) {
-    return super.getById(user_id, "user_id");
+  getBookmarkedMoviesByUserId(user_id) {
+    const sql = `SELECT * FROM bookmarked_movies bm 
+                 JOIN movies m on bm.movie_id = m.id
+                 WHERE user_id = ?`;
+
+    return dbConnection.execute(sql, [user_id]);
   }
 
   checkIfMovieIsBookmarked(user_id, movie_id) {
     const sql = `SELECT * FROM bookmarked_movies WHERE
-                   user_id = ? AND movie_id = ?`;
+                 user_id = ? AND movie_id = ?`;
 
     return dbConnection.execute(sql, [user_id, movie_id]);
+  }
+
+  deleteMovieFromBookmarks(movieId) {
+    super.deleteRow("movie_id", movieId);
   }
 }
 

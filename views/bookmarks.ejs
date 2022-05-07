@@ -10,7 +10,7 @@
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="/public/css/movies.css" />
+    <link rel="stylesheet" href="/public/css/bookmarkedmovies.css" />
     <!-- JavaScript Bundle with Popper -->
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
@@ -18,17 +18,14 @@
       crossorigin="anonymous"
       defer
     ></script>
-    <script src="/public/js/movies.js" defer></script>
-    <title>Movies</title>
+    <title>Bookmarks</title>
   </head>
   <body>
     <%-include('./partials/navbar.ejs') %>
 
-    <!--Main Content-->
-
-    <div class="container mt-5 d-flex justify-content-around">
-      <div class="movie-container">
-        <% movies.forEach(movie => { %>
+    <div class="container">
+      <div class="movie-container mt-5">
+        <% if(locals.movies) {%> <% movies.forEach(movie => { %>
         <div
           id="card"
           data-id="<%= movie.id %> "
@@ -45,7 +42,8 @@
             <p class="card-text"><%= movie.description%></p>
           </div>
         </div>
-        <% })%>
+
+        <% }) %> <% } %>
       </div>
     </div>
   </body>
