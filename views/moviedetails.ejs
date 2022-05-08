@@ -42,7 +42,9 @@
 
     <div class="container mt-5 mb-5 d-flex justify-content-center flex-column">
       <div class="bg-light shadow p-2">
-        <h4 class="border-bottom" style="width: fit-content">Storyline</h4>
+        <h4 class="border-bottom" style="width: fit-content">
+          About the movie
+        </h4>
         <p><%= movieAndActors[0].description %></p>
       </div>
       <div class="bg-light shadow p-2 mt-4">
@@ -143,7 +145,7 @@
       aria-labelledby="editModal"
       aria-hidden="true"
     >
-      <div class="modal-dialog">
+      <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="editModal">Confirm</h5>
@@ -156,7 +158,16 @@
               X
             </button>
           </div>
-          <div class="modal-body">Edit Stuff Goes Here</div>
+          <div class="modal-body">
+            <h5 class="text-center">Edit fields</h5>
+            <div>
+              <label for="description">Edit Movie Description</label>
+              <textarea id="description-edit" cols="30" rows="10"></textarea>
+              <label for="review">Edit Review</label>
+              <textarea id="description-edit" cols="30" rows="10"></textarea>
+              <label for="actors">Edit Starring Actors</label>
+            </div>
+          </div>
           <div class="modal-footer">
             <button
               type="button"

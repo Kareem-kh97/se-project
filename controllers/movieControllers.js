@@ -18,8 +18,17 @@ const movie_get = async (req, res) => {
 
 const movie_by_id_get = async (req, res, next) => {
   const movie_id = req.params.id;
-  const [movieAndActors] = await ActorsMovies.getMoviesAndActors(movie_id);
+  let [movieAndActors] = await ActorsMovies.getMoviesAndActors(movie_id);
+
+  if (movieAndActors.length == 0) {
+    [movieAndActors] = await Movies.getMovieById(movie_id);
+  }
+
+  console.log(movieAndActors);
+
   if (movieAndActors.length == 0) return next("Given movie id doesn't exist");
+
+  console.log(movieAndActors);
 
   const decodedToken = await decodeToken(req.cookies.jwt);
   const [user] = await User.getById(decodedToken.id);
