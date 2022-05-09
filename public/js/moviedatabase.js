@@ -12,7 +12,18 @@ if (cards.length !== 0) {
     });
   });
 }
-searchButton.addEventListener("click", async (e) => {
+
+searchBar.addEventListener("keypress", (e) => {
+  if (e.key == "Enter") {
+    const inputText = searchBar.value.trim();
+
+    if (inputText) {
+      window.location = "/moviedb?movietitle=" + inputText;
+    }
+  }
+});
+
+searchButton.addEventListener("click", (e) => {
   e.preventDefault();
 
   const inputText = searchBar.value.trim();

@@ -11,12 +11,12 @@ const decodeToken = async (token) => {
   return decoded;
 };
 
-const movie_get = async (req, res) => {
+const displayHomepage = async (req, res) => {
   const [movies] = await Movies.getMovies();
   res.render("movies", { movies });
 };
 
-const movie_by_id_get = async (req, res, next) => {
+const displayMovieById = async (req, res, next) => {
   const movie_id = req.params.id;
   let [movieAndActors] = await ActorsMovies.getMoviesAndActors(movie_id);
 
@@ -40,7 +40,7 @@ const movie_by_id_get = async (req, res, next) => {
   res.render("moviedetails", { movieAndActors, userBookmarks, isUserEditor });
 };
 
-const add_review_get = async (req, res) => {
+const showReviewPage = async (req, res) => {
   const decodedToken = await decodeToken(req.cookies.jwt);
   const [user] = await User.getById(decodedToken.id);
 
@@ -53,7 +53,7 @@ const add_review_get = async (req, res) => {
   res.render("addmoviereview", { actors });
 };
 
-const add_movie_post = async (req, res) => {
+const addNewMovieReview = async (req, res) => {
   const data = req.body;
 
   const [returnData] = await Movies.addMovie(
@@ -68,7 +68,7 @@ const add_movie_post = async (req, res) => {
 };
 
 //Fill out intermediary table between actors and movies
-const add_movies_actors_post = async (req, res) => {
+const fillMovieActorAssociativeTable = async (req, res) => {
   const { movie_id, actor_id } = req.body;
 
   //Remove double space
@@ -139,11 +139,11 @@ const movieByIdDelete = async (req, res) => {
 };
 
 module.exports = {
-  movie_get,
-  movie_by_id_get,
-  add_review_get,
-  add_movie_post,
-  add_movies_actors_post,
+  displayHomepage,
+  displayMovieById,
+  showReviewPage,
+  addNewMovieReview,
+  fillMovieActorAssociativeTable,
   bookmarkMoviePost,
   bookmarkedMoviesGet,
   movieDbGet,
