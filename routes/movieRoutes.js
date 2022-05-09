@@ -32,6 +32,12 @@ router.get("/moviedb", authenticateUser, movieControllers.movieDbGet);
 
 router.get("/movie/:id", authenticateUser, movieControllers.movie_by_id_get);
 
-router.delete("/movie/:id", movieControllers.movieByIdDelete);
+router.put(
+  "/movie/:id",
+  authenticateUser,
+  movieControllers.updateMovieFieldsById
+);
+
+router.delete("/movie/:id", authenticateUser, movieControllers.movieByIdDelete);
 
 module.exports = router;

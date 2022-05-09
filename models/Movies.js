@@ -13,12 +13,16 @@ class Movies extends Dao {
     return super.getById(id);
   };
 
-  addMovie = (fields, values) => {
-    return super.insertRow(fields, values);
+  addMovie = (columnNames, values) => {
+    return super.insertRow(columnNames, values);
   };
 
   deleteMovieById = (movieId) => {
     return super.deleteRow("id", movieId);
+  };
+
+  updateMovieById = (columnNames, values, movieId) => {
+    return super.updateRowById(columnNames, values, movieId);
   };
 
   getMovieByTitleWithPattern(movieTitle) {

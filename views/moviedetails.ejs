@@ -27,7 +27,7 @@
     <!--Main Content-->
     <h2
       id="movie-title"
-      data-movie-id="<%= movieAndActors[0].movie_id %> "
+      data-movie-id="<%= movieAndActors[0].id %> "
       class="text-center mt-4"
     >
       <%= movieAndActors[0].title %>
@@ -45,11 +45,11 @@
         <h4 class="border-bottom" style="width: fit-content">
           About the movie
         </h4>
-        <p><%= movieAndActors[0].description %></p>
+        <p id="movie-description"><%= movieAndActors[0].description %></p>
       </div>
       <div class="bg-light shadow p-2 mt-4">
         <h4 class="border-bottom" style="width: fit-content">Review</h4>
-        <p><%= movieAndActors[0].review %></p>
+        <p id="movie-review"><%= movieAndActors[0].review %></p>
       </div>
       <div class="p-2 mt-4">
         <h4 class="border-bottom" style="width: fit-content">Actors</h4>
@@ -87,6 +87,7 @@
           Delete
         </button>
         <button
+          id="open-edit-modal"
           data-bs-toggle="modal"
           data-bs-target="#editModal"
           class="btn btn-warning w-25"
@@ -160,12 +161,19 @@
           </div>
           <div class="modal-body">
             <h5 class="text-center">Edit fields</h5>
-            <div>
-              <label for="description">Edit Movie Description</label>
-              <textarea id="description-edit" cols="30" rows="10"></textarea>
-              <label for="review">Edit Review</label>
-              <textarea id="description-edit" cols="30" rows="10"></textarea>
-              <label for="actors">Edit Starring Actors</label>
+            <div class="d-flex flex-column">
+              <div class="mt-3">
+                <label for="title">Edit Title</label><br />
+                <input id="title-edit" type="text" />
+              </div>
+              <div class="mt-3">
+                <label for="description">Edit Movie Description</label><br />
+                <textarea id="description-edit" cols="50" rows="10"></textarea>
+              </div>
+              <div class="mt-3">
+                <label for="review">Edit Review</label><br />
+                <textarea id="review-edit" cols="50" rows="10"></textarea>
+              </div>
             </div>
           </div>
           <div class="modal-footer">

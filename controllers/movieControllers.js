@@ -23,12 +23,7 @@ const movie_by_id_get = async (req, res, next) => {
   if (movieAndActors.length == 0) {
     [movieAndActors] = await Movies.getMovieById(movie_id);
   }
-
-  console.log(movieAndActors);
-
   if (movieAndActors.length == 0) return next("Given movie id doesn't exist");
-
-  console.log(movieAndActors);
 
   const decodedToken = await decodeToken(req.cookies.jwt);
   const [user] = await User.getById(decodedToken.id);
@@ -120,15 +115,25 @@ const movieDbGet = async (req, res) => {
   }
 };
 
+const updateMovieFieldsById = async (req, res) => {
+  const movieId = req.params.id;
+  const updatedMovieObject = req.body;
+
+  const columnNames = Object.keys(updatedMovieObject);
+  const values = Object.values(updatedMovieObject);
+
+  await Movies.updateMovieById(columnNames, values, movieId);
+
+  res.json({ message: "Successfuly updated" });
+};
+
 const movieByIdDelete = async (req, res) => {
   const movieId = req.params.id;
-
-  console.log("Triggered");
 
   //Remove prior constraints from child tables first
   await ActorsMovies.deleteMoviesAndActors("movie_id", movieId);
   await UsersBookmarkedMovies.deleteMovieFromBookmarks(movieId);
-  const [result] = await Movies.deleteMovieById(movieId);
+  await Movies.deleteMovieById(movieId);
 
   res.json({ message: "Successfuly deleted the movie" });
 };
@@ -142,5 +147,6 @@ module.exports = {
   bookmarkMoviePost,
   bookmarkedMoviesGet,
   movieDbGet,
+  updateMovieFieldsById,
   movieByIdDelete,
 };

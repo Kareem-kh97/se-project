@@ -26,11 +26,19 @@ class Dao {
     values represent the values we're putting into those fields
     question marks are created in order to create prepared statements and avoid sql injections
   */
-  insertRow(fields, values) {
-    const joinedFields = fields.join(",");
-    const questionMarks = fields.map(() => "?").join(",");
+  insertRow(columnNames, values) {
+    const joinedFields = columnNames.join(",");
+    const questionMarks = columnNames.map(() => "?").join(",");
     const sql = `INSERT INTO ${this.tableName} (${joinedFields}) VALUES (${questionMarks})`;
     return dbConnection.execute(sql, values);
+  }
+
+  updateRowById(columnNames, values, id, idColumnName = "id") {
+    const updateStatement = columnNames
+      .map((columnName, index) => columnName + " = " + `"${values[index]}"`)
+      .join(", ");
+    const sql = `UPDATE ${this.tableName} SET ${updateStatement} WHERE ${idColumnName} = ?`;
+    dbConnection.execute(sql, [id]);
   }
 
   deleteRow(columnName, value) {
