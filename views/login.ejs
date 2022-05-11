@@ -1,31 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/public/css/login.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/public/css/login.css" />
     <script src="/public/js/login.js" defer></script>
     <title>Login</title>
-</head>
-<body>
-
+  </head>
+  <body>
     <div class="container">
-        <form id="form">
-            <h2>Login</h2>
-            <div>
-                <label for="email">Email</label>
-                <input type="email" name="email" id="email" required>
-                <div class="error" id="email-error"></div>
-            </div>
-            <div>
-                <label for="password">Password</label>
-                <input type="password" name="password" id="password" required>
-                <div class="error" id="password-error"></div>
-            </div>
-            <input id="login-button" type="submit" value="Login">
-        </form>
+      <form id="form">
+        <h2>Login</h2>
+        <div>
+          <label for="email">Email</label>
+          <input type="email" name="email" id="email" required />
+          <div class="error" id="email-error"></div>
+        </div>
+        <div>
+          <label for="password">Password</label>
+          <input type="password" name="password" id="password" required />
+          <div class="error" id="password-error"></div>
+        </div>
+        <a href="/register">Create Account</a>
+        <input id="login-button" type="submit" value="Login" />
+      </form>
     </div>
-    
-</body>
+  </body>
 </html>

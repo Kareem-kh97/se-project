@@ -1,36 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/public/css/register.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/public/css/register.css" />
     <script src="/public/js/register.js" defer></script>
     <title>Registration</title>
-</head>
-<body>
-
+  </head>
+  <body>
     <div class="container">
-        <form id="form">
-            <h2>Registration</h2>
-            <div>
-                <label for="username">Username</label>
-                <input type="text" name="username" id="username" required>
-                <div class="error" id="username-error"></div>
-            </div>
-            <div>
-                <label for="email">Email</label>
-                <input type="email" name="email" id="email" required>
-                <div class="error" id="email-error"></div>
-            </div>
-            <div>
-                <label for="password">Password</label>
-                <input type="password" name="password" id="password" required>
-                <div class="error" id="password-error"></div>
-            </div>
-            <input id="register-button" type="submit" value="Register">
-        </form>
+      <form id="form">
+        <h2>Registration</h2>
+        <div>
+          <label for="username">Username</label>
+          <input type="text" name="username" id="username" required />
+          <div class="error" id="username-error"></div>
+        </div>
+        <div>
+          <label for="email">Email</label>
+          <input type="email" name="email" id="email" required />
+          <div class="error" id="email-error"></div>
+        </div>
+        <div>
+          <label for="password">Password</label>
+          <input type="password" name="password" id="password" required />
+          <div class="error" id="password-error"></div>
+        </div>
+        <a href="/login">Login to account</a>
+        <input id="register-button" type="submit" value="Register" />
+      </form>
     </div>
-
-</body>
+  </body>
 </html>

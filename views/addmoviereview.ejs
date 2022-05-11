@@ -33,6 +33,7 @@
             class="form-control"
             name="title"
             placeholder="Movie title"
+            required
           />
         </div>
         <div class="form-group">
@@ -42,11 +43,23 @@
             name="description"
             cols="50"
             rows="5"
+            required
           ></textarea>
         </div>
         <div class="form-group">
           <label for="review">What do you think about the movie?</label><br />
-          <textarea id="review" name="review" cols="50" rows="5"></textarea>
+          <textarea
+            id="review"
+            name="review"
+            cols="50"
+            rows="5"
+            required
+          ></textarea>
+        </div>
+        <div class="form-group">
+          <label for="review">How do you rate the movie from 0 to 10?</label
+          ><br />
+          <input id="rating" name="rating" type="number" min="1" max="10" />
         </div>
         <div class="form-group">
           <select

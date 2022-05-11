@@ -20,10 +20,12 @@ if (openEditModal) {
     const movieReview = document
       .getElementById("movie-review")
       .textContent.trim();
+    const movieRating = document.getElementById("movie-rating").value;
 
     document.getElementById("title-edit").value = movieTitle;
     document.getElementById("description-edit").textContent = movieDescription;
     document.getElementById("review-edit").textContent = movieReview;
+    document.getElementById("rating-edit").value = movieRating;
   });
 
   editButton.addEventListener("click", async (e) => {
@@ -32,11 +34,13 @@ if (openEditModal) {
     const newTitle = document.getElementById("title-edit").value;
     const newDescription = document.getElementById("description-edit").value;
     const newReview = document.getElementById("review-edit").value;
+    const newRating = document.getElementById("rating-edit").value;
 
     const editedMovieFields = {
       title: newTitle,
       description: newDescription,
       review: newReview,
+      rating: newRating,
     };
 
     let updateRequestResult = await fetch(`/movie/` + movie_id, {

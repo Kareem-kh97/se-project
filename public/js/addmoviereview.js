@@ -5,6 +5,7 @@ const submitButton = document.getElementById("submit-button");
 const movieTitleInput = document.getElementById("title");
 const movieDescInput = document.getElementById("description");
 const movieReviewInput = document.getElementById("review");
+const movieRatingInput = document.getElementById("rating");
 
 submitButton.addEventListener("click", async (e) => {
   e.preventDefault();
@@ -13,6 +14,7 @@ submitButton.addEventListener("click", async (e) => {
     title: movieTitleInput.value,
     description: movieDescInput.value,
     review: movieReviewInput.value,
+    rating: Math.round(movieRatingInput.value * 10) / 10,
   };
 
   const movieResponse = await fetch("/addmovie", {
