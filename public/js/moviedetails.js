@@ -39,8 +39,6 @@ if (openEditModal) {
       review: newReview,
     };
 
-    console.log(editedMovieFields);
-
     let updateRequestResult = await fetch(`/movie/` + movie_id, {
       method: "PUT",
       headers: {
