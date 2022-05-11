@@ -20,7 +20,7 @@ if (openEditModal) {
     const movieReview = document
       .getElementById("movie-review")
       .textContent.trim();
-    const movieRating = document.getElementById("movie-rating").value;
+    const movieRating = document.getElementById("movie-rating").textContent;
 
     document.getElementById("title-edit").value = movieTitle;
     document.getElementById("description-edit").textContent = movieDescription;
