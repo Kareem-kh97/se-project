@@ -38,6 +38,7 @@ class Dao {
       .map((columnName, index) => columnName + " = " + `"${values[index]}"`)
       .join(", ");
     const sql = `UPDATE ${this.tableName} SET ${updateStatement} WHERE ${idColumnName} = ?`;
+    console.log("Model layer: ", sql);
     dbConnection.execute(sql, [id]);
   }
 

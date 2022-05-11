@@ -17,4 +17,7 @@ router.post("/login", userControllers.login_post);
 
 router.post("/bookmark/:id", authenticateUser, userControllers.bookmark_post);
 
+//Logout routes
+router.get("/logout", userControllers.logout);
+
 module.exports = router;

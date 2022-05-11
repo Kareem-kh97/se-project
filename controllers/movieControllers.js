@@ -37,6 +37,8 @@ const displayMovieById = async (req, res, next) => {
 
   userBookmarks = userBookmarks.length == 0 ? true : false;
 
+  console.log(movieAndActors);
+
   res.render("moviedetails", { movieAndActors, userBookmarks, isUserEditor });
 };
 
@@ -88,6 +90,8 @@ const bookmarkMoviePost = async (req, res) => {
 
   const { movie_id } = req.body;
 
+  console.log(movie_id, user_id);
+
   await UsersBookmarkedMovies.addMovieToBookmakrs(user_id, movie_id);
   //return res.json({ message: "success" });
 };
@@ -116,6 +120,8 @@ const movieDbGet = async (req, res) => {
 };
 
 const updateMovieFieldsById = async (req, res) => {
+  console.log("triggered");
+
   const movieId = req.params.id;
   const updatedMovieObject = req.body;
 

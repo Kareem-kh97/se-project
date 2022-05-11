@@ -100,6 +100,11 @@ const login_post = async (req, res, next) => {
   }
 };
 
+const logout = (req, res) => {
+  res.clearCookie("jwt");
+  res.render("login");
+};
+
 const bookmark_post = async (req, res) => {
   //Continue here
   const movie_id = req.params.id;
@@ -110,5 +115,6 @@ module.exports = {
   register_post,
   login_get,
   login_post,
+  logout,
   bookmark_post,
 };

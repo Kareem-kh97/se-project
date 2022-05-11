@@ -30,15 +30,16 @@ if (openEditModal) {
     e.preventDefault();
 
     const newTitle = document.getElementById("title-edit").value;
-    const newDescription =
-      document.getElementById("description-edit").textContent;
-    const newReview = document.getElementById("review-edit").textContent;
+    const newDescription = document.getElementById("description-edit").value;
+    const newReview = document.getElementById("review-edit").value;
 
     const editedMovieFields = {
       title: newTitle,
       description: newDescription,
       review: newReview,
     };
+
+    console.log(editedMovieFields);
 
     let updateRequestResult = await fetch(`/movie/` + movie_id, {
       method: "PUT",
@@ -58,6 +59,8 @@ if (openEditModal) {
 if (deleteButton) {
   deleteButton.addEventListener("click", async (e) => {
     e.preventDefault();
+
+    console.log(movie_id);
 
     let deleteRequestResult = await fetch("/movie/" + movie_id, {
       method: "DELETE",
