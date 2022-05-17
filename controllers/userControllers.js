@@ -92,8 +92,9 @@ const login_post = async (req, res, next) => {
     const jwtToken = createJwtToken(dbUser.id);
     res.cookie("jwt", jwtToken, {
       sameSite: "none",
+      httpOnly: true,
       secure: true,
-      domain: "se-project-burch.herokuapp",
+      domain: "se-project-burch.herokuapp.com",
       maxAge: 24 * 60 * 60 * 1000,
     });
     res.json({ message: "Success" });
