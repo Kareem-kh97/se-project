@@ -10,6 +10,7 @@ const movieRoutes = require("./routes/movieRoutes");
 
 //Setup ejs as our templating language
 app.set("view engine", "ejs");
+app.set("trust proxy", 1);
 
 //Start server
 app.listen(PORT || 3000, () => {
