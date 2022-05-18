@@ -2,6 +2,8 @@ const form = document.getElementById("form");
 const emailErrorField = document.getElementById("email-error");
 const passwordErrorField = document.getElementById("password-error");
 
+window.history.pushState("", "", "/login");
+
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
 
