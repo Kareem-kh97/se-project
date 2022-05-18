@@ -6,7 +6,7 @@ Welcome to our project!
 
 !!! Login credentials at the bottom !!!
 
-Heroku link: https://se-project-burch.herokuapp.com/login
+Heroku link: https://se-project-burch.herokuapp.com
 
 The main idea behind the site is that users can check movie reviews.
 
@@ -26,9 +26,11 @@ Note:
 
 Future plans (may change): choose poster image, add movie trailers from youtube, actor database and more.
 
-Since the db hosted website only allows 5MB of storage, We're currently using the same movie poster for every new movie review created, however we will try to come up with a better way for editors to set their own poster (something like storing and imgur link in the database instead of an image).
+Since the db hosted website only allows 5MB of storage, We're currently using the same movie poster for every new movie review created, however we will try to come up with a better way for editors to set their own poster (something like storing an imgur link in the database instead of an image).
 
 Feel free to create your own account to test the system, however you will only get access as a regular user, so here are the login credentials as an editor:
 
 email: admin@gmail.com
 pass: abc123
+
+If the site doesn't work for some reason (stopped working overnight a few times) please contact me and I'll just restart the server.
