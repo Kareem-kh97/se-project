@@ -17,6 +17,8 @@ form.addEventListener("submit", async (e) => {
 
   const response = await fetch("/login", {
     method: "POST",
+    mode: "same-origin",
+    redirect: "follow",
     credentials: "include",
     headers: {
       "Content-Type": "application/json",
