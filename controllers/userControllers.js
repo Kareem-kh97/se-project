@@ -91,7 +91,6 @@ const login_post = async (req, res, next) => {
 
     const jwtToken = createJwtToken(dbUser.id);
     res.cookie("jwt", jwtToken, {
-      secure: true,
       httpOnly: false,
       maxAge: 24 * 60 * 60 * 1000,
     });
