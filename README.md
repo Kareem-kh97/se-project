@@ -24,9 +24,9 @@ If a user were to try and create a new review, they would get taken to a 403 pag
 
 Note:
 
-Future plans (may change): choose poster image, add movie trailers from youtube, actor database and more.
+Future plans (may change): choose poster image, password reset, add movie trailers from youtube, actor database, improve UI and more.
 
-Since the db hosted website only allows 5MB of storage, We're currently using the same movie poster for every new movie review created, however we will try to come up with a better way for editors to set their own poster (something like storing an imgur link in the database instead of an image).
+Since the free database provided by heroku only allows 5MB of storage, We're currently using the same movie poster for every new movie review created, however we will try to come up with a better way for editors to set their own poster (something like storing an imgur link in the database instead of an image).
 
 Feel free to create your own account to test the system, however you will only get access as a regular user, so here are the login credentials as an editor:
 
