@@ -1,6 +1,7 @@
 const User = require("../models/User");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const randomString = require("randomstring");
 require("dotenv").config();
 
 const registerFormValidation = (username, email, password) => {
@@ -105,9 +106,25 @@ const logout = (req, res) => {
   res.render("login");
 };
 
-const bookmark_post = async (req, res) => {
-  //Continue here
-  const movie_id = req.params.id;
+const forgotPasswordRender = (req, res) => {
+  res.render("forgotpassword");
+};
+
+const forgotPassword = async (req, res) => {
+  const email = req.params.email;
+  const [user] = await User.getUserByEmail(email);
+  console.log(user[0].id);
+  if (user.length === 0) {
+    return res.json({ message: "No user found" });
+  }
+
+  const passwordResetToken = randomString.generate(10);
+  //mysql unixtime
+  const timestamp = Date.now() / 1000;
+
+  await User.addPasswordResetToken(passwordResetToken, timestamp, user[0].id);
+
+  res.json({ message: "success" });
 };
 
 module.exports = {
@@ -116,5 +133,6 @@ module.exports = {
   login_get,
   login_post,
   logout,
-  bookmark_post,
+  forgotPasswordRender,
+  forgotPassword,
 };

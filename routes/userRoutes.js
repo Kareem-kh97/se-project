@@ -15,9 +15,12 @@ router.get("/login", checkIfUserIsLoggedIn, userControllers.login_get);
 
 router.post("/login", userControllers.login_post);
 
-router.post("/bookmark/:id", authenticateUser, userControllers.bookmark_post);
-
-//Logout routes
+//Logout route
 router.get("/logout", userControllers.logout);
+
+//Forgot password
+router.get("/forgotpassword", userControllers.forgotPasswordRender);
+
+router.get("/forgotpassword/:email", userControllers.forgotPassword);
 
 module.exports = router;

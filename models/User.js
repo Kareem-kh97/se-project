@@ -1,4 +1,5 @@
 const Dao = require("./Dao");
+const dbConnection = require("../config/db");
 
 class User extends Dao {
   constructor() {
@@ -12,6 +13,12 @@ class User extends Dao {
 
   addNewUser = (fields, values) => {
     return super.insertRow(fields, values);
+  };
+
+  addPasswordResetToken = (token, timestamp, id) => {
+    const sql =
+      "UPDATE users SET passwordToken = ?, tokenCreatedAt = FROM_UNIXTIME(?) WHERE id = ?";
+    return dbConnection.execute(sql, [token, timestamp, id]);
   };
 
   getUserByEmail = (email) => {
