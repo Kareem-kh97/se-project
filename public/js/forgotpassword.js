@@ -17,5 +17,9 @@ form.addEventListener("submit", async (e) => {
 
   errorField.textContent = response.message;
 
+  setTimeout(() => {
+    window.location.href = "/login";
+  }, 3000);
+
   console.log(response.message);
 });

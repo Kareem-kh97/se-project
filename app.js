@@ -41,7 +41,6 @@ app.use((req, res) => {
   res.render("404");
 });
 
-//Handles errors edit later
 app.use((error, req, res, next) => {
   console.log(error);
   res.render("404");

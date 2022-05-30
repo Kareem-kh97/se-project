@@ -2,6 +2,7 @@ const User = require("../models/User");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const randomString = require("randomstring");
+const emailSender = require("../config/emailsender");
 require("dotenv").config();
 
 const registerFormValidation = (username, email, password) => {
@@ -113,7 +114,6 @@ const forgotPasswordRender = (req, res) => {
 const forgotPassword = async (req, res) => {
   const email = req.params.email;
   const [user] = await User.getUserByEmail(email);
-  console.log(user[0].id);
   if (user.length === 0) {
     return res.json({ message: "No user found" });
   }
@@ -124,7 +124,41 @@ const forgotPassword = async (req, res) => {
 
   await User.addPasswordResetToken(passwordResetToken, timestamp, user[0].id);
 
-  res.json({ message: "success" });
+  //Send reset link dynamically either in test environment or in production
+  const url = req.get("host");
+
+  emailSender(user[0].email, passwordResetToken, url);
+
+  res.json({ message: "Email has been sent!" });
+};
+
+const passwordResetRender = async (req, res) => {
+  const token = req.params.token;
+
+  const [user] = await User.getUserByPasswordResetToken(token);
+
+  if (user.length == 0) {
+    return res.render("404");
+  }
+  const currentUnixTime = Date.now() / 1000;
+
+  const timeDifference = currentUnixTime - user[0].tokenCreatedAt;
+
+  if (timeDifference >= 900) {
+    return res.render("tokenexpired");
+  }
+
+  res.render("passwordreset", { token: user[0].passwordToken });
+};
+
+const passwordReset = async (req, res) => {
+  const { password, token } = req.body;
+
+  const hashedPassword = await hashPassword(password);
+  await User.changeUserPassword(hashedPassword, token);
+  await User.setTokenDataToNull(token);
+
+  res.json({ message: "Success" });
 };
 
 module.exports = {
@@ -135,4 +169,6 @@ module.exports = {
   logout,
   forgotPasswordRender,
   forgotPassword,
+  passwordResetRender,
+  passwordReset,
 };

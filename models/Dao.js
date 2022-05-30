@@ -33,13 +33,21 @@ class Dao {
     return dbConnection.execute(sql, values);
   }
 
-  updateRowById(columnNames, values, id, idColumnName = "id") {
+  /*
+  columnNames - names of the columns to be updated (array)
+  values - new values to be updated (array)
+  uniqueIdentifier - value of the unique identifier
+  idColumnName - which column name are we updating by
+  */
+  updateRowById(columnNames, values, uniqueIdentifier, idColumnName = "id") {
     const updateStatement = columnNames
       .map((columnName, index) => columnName + " = " + `"${values[index]}"`)
       .join(", ");
     const sql = `UPDATE ${this.tableName} SET ${updateStatement} WHERE ${idColumnName} = ?`;
-    console.log("Model layer: ", sql);
-    dbConnection.execute(sql, [id]);
+    if (typeof uniqueIdentifier == "string") {
+      const uniqueIdentifierToString = `"${uniqueIdentifier}"`;
+    }
+    return dbConnection.execute(sql, [uniqueIdentifier]);
   }
 
   deleteRow(columnName, value) {

@@ -19,8 +19,20 @@ router.post("/login", userControllers.login_post);
 router.get("/logout", userControllers.logout);
 
 //Forgot password
-router.get("/forgotpassword", userControllers.forgotPasswordRender);
+router.get(
+  "/forgotpassword",
+  checkIfUserIsLoggedIn,
+  userControllers.forgotPasswordRender
+);
 
-router.get("/forgotpassword/:email", userControllers.forgotPassword);
+router.get(
+  "/forgotpassword/:email",
+  checkIfUserIsLoggedIn,
+  userControllers.forgotPassword
+);
+
+router.post("/passwordreset", userControllers.passwordReset);
+
+router.get("/passwordreset/:token", userControllers.passwordResetRender);
 
 module.exports = router;

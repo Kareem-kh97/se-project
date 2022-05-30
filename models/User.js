@@ -11,6 +11,12 @@ class User extends Dao {
     return super.getById(id);
   };
 
+  getUserByPasswordResetToken = (token) => {
+    const sql =
+      "SELECT id,username, passwordToken, UNIX_TIMESTAMP(tokenCreatedAt) AS tokenCreatedAt FROM users WHERE passwordToken = ?";
+    return dbConnection.execute(sql, [token]);
+  };
+
   addNewUser = (fields, values) => {
     return super.insertRow(fields, values);
   };
@@ -19,6 +25,21 @@ class User extends Dao {
     const sql =
       "UPDATE users SET passwordToken = ?, tokenCreatedAt = FROM_UNIXTIME(?) WHERE id = ?";
     return dbConnection.execute(sql, [token, timestamp, id]);
+  };
+
+  setTokenDataToNull = (token) => {
+    const sql =
+      "UPDATE users SET passwordToken = NULL, tokenCreatedAt = NULL WHERE passwordToken = ?";
+    return dbConnection.execute(sql, [token]);
+  };
+
+  changeUserPassword = (password, token) => {
+    return super.updateRowById(
+      ["password"],
+      [password],
+      token,
+      "passwordToken"
+    );
   };
 
   getUserByEmail = (email) => {
