@@ -4,8 +4,8 @@
   box-sizing: border-box;
 }
 
-.container {
-  margin: 0 auto;
+.wrapper {
+  max-height: 768px;
   margin-top: 10%;
 }
 

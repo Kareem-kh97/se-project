@@ -34,3 +34,7 @@ email: admin@gmail.com
 pass: abc123
 
 If the site doesn't work for some reason (stopped working overnight a few times) please contact me and I'll just restart the server.
+
+Update notes:
+
+Added a SMTP email sender for password resets, however google will turn off the "allow access to less secure apps" feature on march 30th, so it most likely won't work on the day of project submission.
