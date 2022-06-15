@@ -3,8 +3,6 @@ const jwt = require("jsonwebtoken");
 const checkIfUserIsLoggedIn = (req, res, next) => {
   const jwtToken = req.cookies.jwt;
 
-  console.log(jwtToken);
-
   if (jwtToken) {
     jwt.verify(jwtToken, process.env.SECRET, (err, decodedToken) => {
       if (err) {

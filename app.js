@@ -8,6 +8,7 @@ const PORT = process.env.PORT || 3000;
 //Import routes
 const userRoutes = require("./routes/userRoutes");
 const movieRoutes = require("./routes/movieRoutes");
+const actorRoutes = require("./routes/actorRoutes");
 
 //Setup ejs as our templating language
 app.set("view engine", "ejs");
@@ -35,6 +36,7 @@ app.use(
 //Include routes
 app.use(userRoutes);
 app.use(movieRoutes);
+app.use(actorRoutes);
 
 //Handles invalid routes
 app.use((req, res) => {

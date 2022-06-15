@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <!-- JavaScript Bundle with Popper -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+      crossorigin="anonymous"
+      defer
+    ></script>
+    <script src="/public/js/addactor.js" defer></script>
+    <title>Add Actor</title>
+  </head>
+  <body>
+    <%-include('./partials/navbar.ejs') %>
+
+    <div class="container mt-5">
+      <form id="form">
+        <div class="form-group">
+          <label for="actor-fullname">Actor Full Name</label>
+          <input
+            id="actor-fullname"
+            type="text"
+            class="form-control"
+            name="actor-fullname"
+            placeholder="Actors fullname"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="actor-about">About the actor</label><br />
+          <textarea
+            id="actor-about"
+            name="actor-about"
+            cols="50"
+            rows="5"
+            required
+          ></textarea>
+        </div>
+        <div class="form-group">
+          <label for="actor-dob">When was the actor born?</label><br />
+          <input type="date" name="actor-dob" id="actor-dob" />
+        </div>
+        <div class="form-group">
+          <label for="actor-place-of-birth">Where was the actor born?</label
+          ><br />
+          <input
+            id="actor-place-of-birth"
+            name="actor-place-of-birth"
+            type="text"
+            min="1"
+          />
+        </div>
+        <button id="submit-button" type="submit" class="btn btn-primary">
+          Submit
+        </button>
+      </form>
+    </div>
+  </body>
+</html>

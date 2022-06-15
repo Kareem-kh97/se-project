@@ -16,7 +16,7 @@ class Dao {
   }
 
   getRowsWithPattern(columnName, searchPattern) {
-    const sql = `SELECT id, title, description FROM ${this.tableName}
+    const sql = `SELECT * FROM ${this.tableName}
                  WHERE ${columnName} LIKE '%${searchPattern}%' LIMIT 10`;
     return dbConnection.execute(sql);
   }
