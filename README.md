@@ -42,3 +42,4 @@ Added a SMTP email sender for password resets, however google will turn off the 
 Added new features where editors can add new actors to the database with basic information about them.
 Regular users can search for actors and see the details about them
 If an editor searches for an actor, he will also be able to see the details but can also edit and delete that actor.
+Also, when you look at the movie details you can see clickable actor names which take you to the actors detail page.
