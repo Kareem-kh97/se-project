@@ -38,3 +38,7 @@ If the site doesn't work for some reason (stopped working overnight a few times)
 Update notes:
 
 Added a SMTP email sender for password resets, however google will turn off the "allow access to less secure apps" feature on march 30th, so it most likely won't work on the day of project submission.
+
+Added new features where editors can add new actors to the database with basic information about them.
+Regular users can search for actors and see the details about them
+If an editor searches for an actor, he will also be able to see the details but can also edit and delete that actor.

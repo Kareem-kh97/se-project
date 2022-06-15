@@ -27,5 +27,5 @@ form.addEventListener("submit", async (e) => {
 
   response = await response.json();
 
-  console.log(response);
+  window.location.href = "/";
 });
